@@ -1,4 +1,4 @@
-name: Deploy to Render
+name: Render Deploy
 
 on:
   push:
@@ -7,20 +7,34 @@ on:
 
 jobs:
   deploy:
+    name: Build & Deploy Fullstack to Render
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node.js
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-      - run: |
-          cd server
+          node-version: '20' # hoặc version bạn dùng trong package.json
+
+      - name: Build Frontend
+        working-directory: ./client
+        run: |
+          npm install
+          npm run build
+
+      - name: Build Backend & Prisma
+        working-directory: ./server
+        run: |
           npm install
           npx prisma generate
-          npm run build || echo "No build script"
+
       - name: Deploy to Render
-        uses: render-examples/github-actions-deploy@v1
+        uses: render-examples/github-action@v1
         with:
-          apiKey: ${{ secrets.RENDER_API_KEY }}
-          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEYpostgresql://schoolscore_db_user:D4A6dlYGDp6wuyrKvmstd7woTlRvztnF@dpg-d4hteh8dl3ps73a05tn0-a/schoolscore_db }}   # thêm Render API Key vào GitHub secrets
+          serviceId: ${{ secrets.52452901b5d507fc5c2eb60c2ae6a53d }} # ID Web Service trên Render
+          branch: main
+          waitForCompletion: true

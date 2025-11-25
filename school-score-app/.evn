@@ -1,2 +1,2 @@
-DATABASE_URL=postgresql://username:password@host:port/schoolscore_db
+DATABASE_URL=postgresql://schoolscore_db_user:D4A6dlYGDp6wuyrKvmstd7woTlRvztnF@dpg-d4hteh8dl3ps73a05tn0-a/schoolscore_db
 JWT_SECRET=supersecretkey
