@@ -1,0 +1,2 @@
+DATABASE_URL=postgresql://username:password@host:port/schoolscore_db
+JWT_SECRET=supersecretkey
