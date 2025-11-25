@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # hoặc version bạn dùng trong package.json
+          node-version: '20'
 
       - name: Build Frontend
         working-directory: ./client
@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to Render
         uses: render-examples/github-action@v1
         with:
-          apiKey: ${{ secrets.RENDER_API_KEYpostgresql://schoolscore_db_user:D4A6dlYGDp6wuyrKvmstd7woTlRvztnF@dpg-d4hteh8dl3ps73a05tn0-a/schoolscore_db }}   # thêm Render API Key vào GitHub secrets
-          serviceId: ${{ secrets.52452901b5d507fc5c2eb60c2ae6a53d }} # ID Web Service trên Render
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
           branch: main
           waitForCompletion: true
